@@ -7,8 +7,12 @@ const createUser = async (data) => {
   const getUsers = async () => {
     return await userRepository.getUsers();
   };
+  const getUserById=async(id)=>{
+    return userRepository.getUserById(id);
+  }
   
   module.exports = {
     createUser,
-    getUsers
+    getUsers,
+    getUserById
   };

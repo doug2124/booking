@@ -9,8 +9,14 @@ const createUser = async (data) => {
   const getUsers = async () => {
     return await prisma.user.findMany();
   };
+  const getUserById=async(id)=>{
+    return prisma.user.findUnique({
+      where:{id:Number(id)}
+    });
+  };
   
   module.exports = {
     createUser,
-    getUsers
+    getUsers,
+    getUserById
   };
