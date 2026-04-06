@@ -3,14 +3,20 @@ const prisma =require("./db");
 
 const app= express();
 
+const userRoutes=require("./src/routes/userRoutes");
+const bookingRoutes=require("./src/routes/bookingRoutes");
+
 const PORT = 3000;
 app.use(express.json());
 
-app.listen(PORT,function(){
+app.use("/users",userRoutes);
+app.use("/bookings",bookingRoutes);
+
+app.listen(PORT,()=>{
     console.log(`Express is running at port: ${PORT}`);
 })
 
-app.get("/",(req,res)=>{
+/*app.get("/",(req,res)=>{
     res.send(`its working at port 3000`);
 });
 
@@ -31,4 +37,4 @@ app.get("/inn",async(req,res)=>{
     console.error("ERROR:",err);
     res.status(500).send("server error");
   }
-})
+})*/
