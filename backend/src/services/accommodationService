@@ -1,0 +1,24 @@
+const accommodationRepository=require("../repositories/accommodationRepository");
+
+const getAccommodation=async()=>{
+    return await accommodationRepository.getAccommodation();
+};
+
+const getAccommodationById=async(id)=>{
+    return await accommodationRepository.getAccommodationById(id)
+};
+
+const createAccommodation=async(data)=>{
+    return await accommodationRepository.createAccommodation(data);
+};
+
+const deleteAccommodation=async(id)=>{
+    return await accommodationRepository.deleteAccommodation(id);
+}
+
+module.exports={
+    getAccommodation,
+    getAccommodationById,
+    createAccommodation,
+    deleteAccommodation
+};

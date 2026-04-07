@@ -17,9 +17,9 @@ model User{
   user_name String?
 }
 
-model Inn{
+model Accommodation{
   id Int @id @default(autoincrement())
-  inn_name String
+  accommodation_name String
   address String
   city String
   type String
@@ -32,8 +32,8 @@ model Inn{
 
 model Reservation {
   id       Int   @id @default(autoincrement())
-  innId    Int
-  inn      Inn   @relation(fields: [innId], references: [id])
+  accommodationId    Int
+  accommodation    Accommodation   @relation(fields: [accommodationId], references: [id])
   guest    String
   nights   Int
   total    Decimal @db.Decimal(10,2)

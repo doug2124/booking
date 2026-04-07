@@ -1,12 +1,18 @@
 const bookingRepository=require("../repositories/bookingRepository");
 
-exports.getBookings=()=>{
+const getBookings=()=>{
     return bookingRepository.findAll();
 };
 
-exports.createBooking=async (data)=>{
+const createBooking=async (data)=>{
     return bookingRepository.create(data);
 };
-exports.getBookingById = async (id) => {
+const getBookingById = async (id) => {
     return bookingRepository.getBookingById(id);
   };
+
+module.exports={
+    getBookings,
+    createBooking,
+    getBookingById
+};

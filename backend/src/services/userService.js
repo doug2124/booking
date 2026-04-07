@@ -10,9 +10,13 @@ const createUser = async (data) => {
   const getUserById=async(id)=>{
     return userRepository.getUserById(id);
   }
+  const deleteUserById=async(id)=>{
+    return userRepository.deleteUserById(id);
+  }
   
   module.exports = {
     createUser,
     getUsers,
-    getUserById
+    getUserById,
+    deleteUserById
   };
