@@ -21,10 +21,17 @@ const deleteAccommodation=async(id)=>{
         where:{id:Number(id)}
     });
 };
+const updateAccommodation=async(id,data)=>{
+    return prisma.accommodation.update({
+        where:{id:Number(id)},
+        data
+    });
+};
 
 module.exports={
     getAccommodation,
     getAccommodationById,
     createAccommodation,
-    deleteAccommodation
+    deleteAccommodation,
+    updateAccommodation
 };

@@ -24,8 +24,16 @@ const getBookingById=async(req,res)=>{
       }
 }
 
+const updateBooking=async(req,res)=>{
+  const id = req.params.id;
+  const data = req.body;
+  const updatedBooking=await bookingService.updateBooking(id,data);
+  res.status(500).json(updatedBooking);
+}
+
 module.exports={
   getBookings,
   createBooking,
-  getBookingById
+  getBookingById,
+  updateBooking
 };

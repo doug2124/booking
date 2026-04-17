@@ -30,9 +30,17 @@ const deleteAccommodation=async(req,res)=>{
     res.json(accommodation);
 };
 
+const updateAccommodation=async(req,res)=>{
+    const id=req.params.id;
+    const data=req.body;
+    const updatedAccommodation=await accommodationService.updateAccommodation(id,data);
+    res.status(500).json(updatedAccommodation);
+}
+
 module.exports={
     getAccommodation,
     createAccommodation,
     getAccommodationById,
-    deleteAccommodation
+    deleteAccommodation,
+    updateAccommodation
 };

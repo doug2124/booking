@@ -16,9 +16,14 @@ const deleteAccommodation=async(id)=>{
     return await accommodationRepository.deleteAccommodation(id);
 }
 
+const updateAccommodation=async(id,data)=>{
+    return accommodationRepository.updateAccommodation(id,data);
+}
+
 module.exports={
     getAccommodation,
     getAccommodationById,
     createAccommodation,
-    deleteAccommodation
+    deleteAccommodation,
+    updateAccommodation
 };

@@ -16,13 +16,19 @@ const create = (data) => {
 };
 const getBookingById = async (id) => {
     return prisma.reservation.findUnique({
-      where: { id: Number(id) },
-      include: { inn: true },
+      where: { id: Number(id) }
     });
   };
+const updateBooking=async(id,data)=>{
+  return prisma.reservation.update({
+    where:{id:Number(id)},
+    data
+  });
+};
 module.exports={
   findAll,
   findByDate,
   create,
-  getBookingById
+  getBookingById,
+  updateBooking
 };

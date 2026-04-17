@@ -5,5 +5,6 @@ const bookingController=require("../controllers/bookingController");
 router.get("/",bookingController.getBookings);
 router.get('/:id', bookingController.getBookingById);
 router.post("/",bookingController.createBooking);
+router.patch('/:id',bookingController.updateBooking);
 
 module.exports=router;
