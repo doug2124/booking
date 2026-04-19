@@ -6,5 +6,7 @@ router.get("/",bookingController.getBookings);
 router.get('/:id', bookingController.getBookingById);
 router.post("/",bookingController.createBooking);
 router.patch('/:id',bookingController.updateBooking);
+router.patch("/:id/confirm",bookingController.confirmBooking);
+router.patch("/:id/cancel",bookingController.cancelBooking);
 
 module.exports=router;

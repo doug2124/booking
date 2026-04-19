@@ -30,6 +30,12 @@ model Accommodation{
   reservation Reservation[]
 }
 
+enum BookingStatus {
+  PENDING
+  CONFIRMED
+  CANCELLED
+}
+
 model Reservation {
   id       Int   @id @default(autoincrement())
   accommodationId    Int
@@ -38,4 +44,5 @@ model Reservation {
   nights   Int
   total    Decimal @db.Decimal(10,2)
   createdAt DateTime @default(now())
+  status BookingStatus @default(PENDING)
 }

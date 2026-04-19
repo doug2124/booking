@@ -31,9 +31,20 @@ const updateBooking=async(req,res)=>{
   res.status(500).json(updatedBooking);
 }
 
+const confirmBooking=async(req,res)=>{
+  const booking= await bookingService.confirmBooking(req.params.id);
+  res.json(booking);
+}
+
+const cancelBooking=async(req,res)=>{
+  const booking=await bookingService.cancelBooking(req.params.id);
+  res.json(booking);
+}
 module.exports={
   getBookings,
   createBooking,
   getBookingById,
-  updateBooking
+  updateBooking,
+  confirmBooking,
+  cancelBooking
 };
