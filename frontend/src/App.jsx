@@ -102,10 +102,10 @@ export default function App() {
         />
       )}
       {page === "createAccommodation" && (
-        <AccommodationCreate onCreate={createAccommodation} />
+        <AccommodationCreate onCreate={createAccommodation} setPage={setPage} />
       )}
       {page === "editAccommodation" && (
-        <AccommodationEdit editData={editData} onUpdate={updateAccommodation} />
+        <AccommodationEdit editData={editData} onUpdate={updateAccommodation} setPage={setPage} />
       )}
     </div>
   );

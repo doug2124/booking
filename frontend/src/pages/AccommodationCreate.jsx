@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function AccommodationCreate({ onCreate }) {
+export default function AccommodationCreate({ onCreate, setPage }) {
   const [form, setForm] = useState({
     accommodation_name: "",
     address: "",
@@ -23,15 +23,16 @@ export default function AccommodationCreate({ onCreate }) {
   };
 
   return (
-    <div>
-      <h2>宿泊施設の登録</h2>
+    <div style={styles.container}>
+      <h2 style={styles.title}>宿泊施設の登録</h2>
 
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} style={styles.form}>
         <input
           name="accommodation_name"
           placeholder="宿の名前"
           value={form.accommodation_name}
           onChange={handleChange}
+          style={styles.input}
         />
 
         <input
@@ -39,6 +40,7 @@ export default function AccommodationCreate({ onCreate }) {
           placeholder="住所"
           value={form.address}
           onChange={handleChange}
+          style={styles.input}
         />
 
         <input
@@ -46,6 +48,7 @@ export default function AccommodationCreate({ onCreate }) {
           placeholder="市区町村"
           value={form.city}
           onChange={handleChange}
+          style={styles.input}
         />
 
         <input
@@ -53,6 +56,7 @@ export default function AccommodationCreate({ onCreate }) {
           placeholder="タイプ（ホテル、旅館など）"
           value={form.type}
           onChange={handleChange}
+          style={styles.input}
         />
 
         <input
@@ -61,6 +65,7 @@ export default function AccommodationCreate({ onCreate }) {
           placeholder="部屋数"
           value={form.rooms}
           onChange={handleChange}
+          style={styles.input}
         />
 
         <input
@@ -69,10 +74,60 @@ export default function AccommodationCreate({ onCreate }) {
           placeholder="1泊の料金"
           value={form.price}
           onChange={handleChange}
+          style={styles.input}
         />
 
-        <button type="submit">登録する</button>
+        <button type="submit" style={styles.submitBtn}>登録する</button>
       </form>
+
+      <button onClick={() => setPage("home")} style={styles.backBtn}>
+        戻る
+      </button>
     </div>
   );
 }
+
+const styles = {
+  container: {
+    width: "350px",
+    margin: "40px auto",
+    padding: "20px",
+    border: "1px solid #ccc",
+    borderRadius: "10px",
+    backgroundColor: "#fafafa"
+  },
+  title: {
+    textAlign: "center",
+    marginBottom: "20px"
+  },
+  form: {
+    display: "flex",
+    flexDirection: "column",
+    gap: "12px"
+  },
+  input: {
+    padding: "10px",
+    fontSize: "16px",
+    borderRadius: "5px",
+    border: "1px solid #ccc"
+  },
+  submitBtn: {
+    padding: "10px",
+    marginTop: "10px",
+    backgroundColor: "#4CAF50",
+    color: "white",
+    border: "none",
+    borderRadius: "5px",
+    cursor: "pointer"
+  },
+  backBtn: {
+    marginTop: "20px",
+    width: "100%",
+    padding: "10px",
+    backgroundColor: "#555",
+    color: "white",
+    border: "none",
+    borderRadius: "5px",
+    cursor: "pointer"
+  }
+};
