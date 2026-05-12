@@ -3,6 +3,7 @@ import Home from "./pages/Home";
 import AccommodationList from "./pages/AccommodationList";
 import AccommodationCreate from "./pages/AccommodationCreate";
 import AccommodationEdit from "./pages/AccommodationEdit";
+import{ API_URL } from "./api";
 
 export default function App() {
   const [accommodation, setAccommodation] = useState([]);
@@ -12,21 +13,21 @@ export default function App() {
 
 
   const fetchAccommodations = async () => {
-    const res = await fetch("http://localhost:3000/accommodations");
+    const res = await fetch(`${API_URL}/accommodations`);
     const data = await res.json();
     setAccommodation(data);
     setPage("accommodationList");
   };
 
   const searchAccommodations = async () => {
-    const res = await fetch(`http://localhost:3000/accommodations/${searchId}`);
+    const res = await fetch(`${API_URL}/accommodations/${searchId}`);
     const data = await res.json();
     setAccommodation([data]);
     setPage("accommodationList");
   };
 
   const createAccommodation = async (form) => {
-    const res = await fetch("http://localhost:3000/accommodations", {
+    const res = await fetch(`${API_URL}/accommodations`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -47,7 +48,7 @@ export default function App() {
   };
 
   const updateAccommodation = async (form) => {
-    const res = await fetch(`http://localhost:3000/accommodations/${form.id}`, {
+    const res = await fetch(`${API_URL}/accommodations/${form.id}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -65,7 +66,7 @@ export default function App() {
     }
   };
   const deleteAccommodation = async (id) => {
-    const res = await fetch(`http://localhost:3000/accommodations/${id}`, {
+    const res = await fetch(`${API_URL}/accommodations/${id}`, {
       method: "DELETE"
     });
   
@@ -80,7 +81,7 @@ export default function App() {
 
   return (
     <div>
-      <h1>Accommodation management</h1>
+      <h1 style={style.title}>Accommodation management</h1>
 
       {page === "home" && (
         <Home
@@ -110,3 +111,11 @@ export default function App() {
     </div>
   );
 }
+const style = {
+  title: {
+    textAlign: "center",
+    width: "100%",
+    fontWeight: 600,
+    marginBottom: "8px",
+  }
+};
