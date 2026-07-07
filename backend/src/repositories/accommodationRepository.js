@@ -1,4 +1,5 @@
 const prisma=require("../../db");
+const { Prisma } = require("@prisma/client");
 
 const getAccommodation=async()=>{
     return await prisma.accommodation.findMany();
@@ -12,7 +13,15 @@ const getAccommodationById=async(id)=>{
 
 const createAccommodation=async(data)=>{
     return await prisma.accommodation.create({
-        data
+        data: {
+            accommodation_name: data.accommodation_name,
+            address: data.address,
+            city: data.city,
+            type: data.type,
+            rooms: Number(data.rooms),
+            price: new Prisma.Decimal(data.price),
+            photo: data.photo  
+        }
     });
 };
 
@@ -30,7 +39,7 @@ const updateAccommodation = async (id, data) => {
         city: data.city,
         type: data.type,
         rooms: Number(data.rooms),
-        price: Number(data.price)
+        price: new Prisma.Decimal(data.price),
       }
     });
   };

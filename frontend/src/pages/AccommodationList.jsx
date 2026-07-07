@@ -3,7 +3,7 @@ export default function AccommodationList({ accommodation, setPage, setEditData,
     <>
       <ul>
         {accommodation.map(acc => (
-          <li key={acc.id} style={styles.accommodationCard}>
+          <div key={acc.id} style={styles.accommodationCard}>
             <p style={styles.accommodationItem}>
               <span style={styles.accommodationLabel}>ID:</span>
               <span style={styles.accommodationValue}>{acc.id}</span>
@@ -57,7 +57,7 @@ export default function AccommodationList({ accommodation, setPage, setEditData,
                 削除
               </button>
             </div>
-          </li>
+          </div>
         ))}
       </ul>
       <div style={{ display: "flex", justifyContent: "center" }}>

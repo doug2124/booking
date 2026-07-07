@@ -13,7 +13,22 @@ const getAccommodation = async (req, res) => {
 
 const createAccommodation=async(req,res)=>{
     try{
-        const accommodation=await accommodationService.createAccommodation(req.body);
+        const data =req.body;
+
+        const photoUrl = req.file
+          ? `http://${req.headers.host}/uploads/${req.file.filename}`
+          : null;
+
+        const accommodation= await accommodationService.createAccommodation({
+          ...data,
+          accommodation_name: data.accommodation_name,
+          address:data.address,
+          city:data.city,
+          type:data.type,
+          rooms:Number(data.rooms),
+          price:Number(data.price),
+          photo: photoUrl,
+        });
         res.status(201).json(accommodation);
     }catch(err){
         res.status(400).json({error:err.message});

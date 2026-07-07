@@ -27,6 +27,7 @@ model Accommodation{
   type String
   rooms Int
   price Decimal @db.Decimal(10,2)
+  photo String?
   createdAt DateTime @default(now())
 
   reservation Reservation[]

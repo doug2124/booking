@@ -77,6 +77,11 @@ export default function AccommodationCreate({ onCreate, setPage }) {
           style={styles.input}
         />
 
+        <input
+          type="file"
+          accept="image/*"
+          onChange={(e) => setForm({ ...form, photoFile: e.target.files[0] })}
+        />
         <button type="submit" style={styles.submitBtn}>登録する</button>
       </form>
 

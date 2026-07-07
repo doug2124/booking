@@ -4,12 +4,15 @@ import AccommodationList from "./pages/AccommodationList";
 import AccommodationCreate from "./pages/AccommodationCreate";
 import AccommodationEdit from "./pages/AccommodationEdit";
 import{ API_URL } from "./api";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer"
 
 export default function App() {
   const [accommodation, setAccommodation] = useState([]);
   const [searchId, setSearchId] = useState("");
   const [page, setPage] = useState("home");
   const [editData, setEditData] = useState(null);
+  document.body.style.backgroundColor = "#1f1f1f";
 
 
   const fetchAccommodations = async () => {
@@ -27,14 +30,20 @@ export default function App() {
   };
 
   const createAccommodation = async (form) => {
+    const formData = new FormData();
+
+    formData.append("accommodation_name", form.accommodation_name);
+    formData.append("address", form.address);
+    formData.append("city", form.city);
+    formData.append("type", form.type);
+    formData.append("rooms", Number(form.rooms));
+    formData.append("price", Number(form.price));
+    
+
+    formData.append("photo", form.photoFile);
     const res = await fetch(`${API_URL}/accommodations`, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        ...form,
-        rooms: Number(form.rooms),
-        price: Number(form.price)
-      })
+      body: formData,
     });
   
     if (res.ok) {
@@ -80,9 +89,9 @@ export default function App() {
   
 
   return (
-    <div>
-      <h1 style={style.title}>Accommodation management</h1>
-
+    <div style={styles.page}>
+       <Navbar></Navbar>
+      <div style={styles.main}>
       {page === "home" && (
         <Home
           fetchAccommodations={fetchAccommodations}
@@ -108,14 +117,21 @@ export default function App() {
       {page === "editAccommodation" && (
         <AccommodationEdit editData={editData} onUpdate={updateAccommodation} setPage={setPage} />
       )}
+         
+      </div>
+      <Footer></Footer>
     </div>
   );
 }
-const style = {
-  title: {
-    textAlign: "center",
+const styles={
+  page:{
+    backgroundColor:"#d9d9d9",
+    minHeight: "100vh",      
     width: "100%",
-    fontWeight: 600,
-    marginBottom: "8px",
-  }
+    display: "flex",
+    flexDirection: "column",              
+  },
+  main: {
+    flex: 1,
+  },
 };
